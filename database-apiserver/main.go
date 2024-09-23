@@ -78,8 +78,9 @@ func main() {
 	if proxy {
 		cfg.CACertFiles = append(cfg.CACertFiles, apiServerStore.CertFile("ca"))
 		cfg.CACertFiles = append(cfg.CACertFiles, rhStore.CertFile("ca"))
+	} else {
+		cfg.CACertFiles = append(cfg.CACertFiles, store.CertFile("ca"))
 	}
-
 	srv := server.NewGenericServer(cfg)
 
 	r := mux.NewRouter()
